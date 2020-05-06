@@ -57,121 +57,67 @@ Resources:
         Value: !Join ['NAT-', [!Ref "AWS::StackName"]]
   ElasticIPAddress:
    Type: AWS::EC2::EIP
-   Condition: BuildMyPrivateSubnet1
    Properties:
      Domain: VPC
   # Some route tables for our subnets:
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
-    Condition: BuildMyPublicSubnet1
     Properties:
-      VpcId: !Ref MyVPC1
+      VpcId: !Ref VPCDMZ
       Tags:
         - 
           Key: Name
-          Value: Public
+          Value: PublicRouteTable
   # Public route table has direct routing to IGW:      
-  PublicRoute1:   
+  PublicRoute:   
     Type: AWS::EC2::Route
-    Condition: BuildMyPublicSubnet1
     DependsOn: AttachGateway
     Properties:
       RouteTableId: !Ref PublicRouteTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway  
-  # Private route table:
-  PrivateRouteTable:
-    Type: AWS::EC2::RouteTable
-    Condition: BuildMyPrivateSubnet1
-    Properties:
-      VpcId: !Ref MyVPC1
-      Tags:
-        - 
-          Key: Name
-          Value: Private
-  # Private route table routing to NAT Gateway
-  PrivateRoute1:            
-    Type: AWS::EC2::Route
-    Condition: BuildMyPrivateSubnet1
-    Properties:
-      RouteTableId: !Ref PrivateRouteTable
-      DestinationCidrBlock: 0.0.0.0/0
-      # Route traffic through the NAT Gateway:
-      NatGatewayId: !Ref NATGateway
-  # Attach the public subnets to public route tables,  
+  # Attach SubnetDMZ to PublicRouteTable,  
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
-    Condition: BuildMyPrivateSubnet1
     Properties:
-      SubnetId: !Ref MyPublicSubnet1
+      SubnetId: !Ref SubnetDMZ
       RouteTableId: !Ref PublicRouteTable
-  # Attach the private subnets to private route tables: 
-  PrivateSubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Condition: BuildMyPrivateSubnet1
-    Properties:
-      SubnetId: !Ref MyPrivateSubnet1
-      RouteTableId: !Ref PrivateRouteTable
-  # Security group for Public subnet.  Ingress from internet IPs but TCP port 22 only:
-  PublicSecurityGroup1:
+  # Security group for SubnetDMZ.  Ingress from internet IPs but TCP port 443 only:
+  PublicSecurityGroupSubnetDMZ:
     Type: AWS::EC2::SecurityGroup
-    Condition: BuildMyPublicSubnet1
     DependsOn: AttachGateway
     Properties:
- #     GroupName: !Join ['PublicSG-', [!Ref "AWS::StackName"]]
-      GroupDescription: Enable internet access but ony on port 22
-      VpcId: !Ref MyVPC1
+      GroupDescription: Enable internet access but ony on port 443
+      VpcId: !Ref VPCDMZ
       SecurityGroupIngress:
       - IpProtocol: tcp
         FromPort: '0'
         ToPort: '65535'
-        CidrIp: !GetAtt MyVPC1.CidrBlock
+        CidrIp: !GetAtt VPCDMZ.CidrBlock
       - IpProtocol: tcp
-        FromPort: '22'
-        ToPort: '22'
+        FromPort: '443'
+        ToPort: '443'
         CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: '0'
         ToPort: '65535'
-        CidrIp: !GetAtt MyVPC1.CidrBlock
+        CidrIp: !GetAtt VPCDMZ.CidrBlock
       - IpProtocol: tcp
-        FromPort: '22'
-        ToPort: '22'
+        FromPort: '443'
+        ToPort: '443'
         CidrIp: 0.0.0.0/0
-  PrivateSecurityGroup1:
-    Type: AWS::EC2::SecurityGroup
-    Condition: BuildMyPrivateSubnet1
-    Properties:
-  #    GroupName: !Join ['PrivateSG-', [!Ref "AWS::StackName"]]
-      GroupDescription: Enable communication inside the VPC
-      VpcId: !Ref MyVPC1
-      SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: '0'
-        ToPort: '65535'
-        CidrIp: !GetAtt MyVPC1.CidrBlock
-      SecurityGroupEgress:
-      - IpProtocol: tcp
-        FromPort: '0'
-        ToPort: '65535'
-        CidrIp: !GetAtt MyVPC1.CidrBlock      
-  PrivateInstance1:
-    Type: AWS::EC2::Instance
-    DependsOn: PrivateRoute1                           
-    Properties:
-      ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
-      InstanceType: t2.small                          
-      NetworkInterfaces:
-      - DeviceIndex: '0'
-        SubnetId: !Ref MyPrivateSubnet1               
-        AssociatePublicIpAddress: false                
-        GroupSet: [!Ref PrivateSecurityGroup1]             # Plug in the security group
-      SourceDestCheck: true 
-      Tags:
-      - 
-        Key: Name
-        Value: !Join ['PrivateInstance1-', [!Ref "AWS::StackName"]]
+
+
+
+
+
+
+
+
+
+
+
 #Output section expected      
 Outputs:
   VPC:
