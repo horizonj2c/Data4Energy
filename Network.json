@@ -107,33 +107,85 @@ Resources:
         FromPort: '443'
         ToPort: '443'
         CidrIp: 0.0.0.0/0
-
-
-
-
-
-
-
-
-
-
-
+# VPCAPPS
+  VPCApps:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+      - Key: Name
+        Value: VPCApps
+# Private Subnet Data4EnergyAPP1          
+  Data4EnergyAPP1:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref VPCApps
+      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
+      CidrBlock: 10.1.1.0/24
+      Tags:
+        - 
+          Key: Name
+          Value: Data4EnergyAPP1
+  # Private route table:
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPCApps
+      Tags:
+        - 
+          Key: Name
+          Value: PrivateRoute
+  # Private route table routing to NAT Gateway
+  PrivateRoute1:            
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      # Route traffic through the NAT Gateway:
+      NatGatewayId: !Ref NATGateway
+  # Attach the private subnets to private route tables: 
+  PrivateSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Data4EnergyAPP1
+      RouteTableId: !Ref PrivateRouteTable
+  # Private security group 
+  PrivateSecurityGroup1:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable communication inside the VPC
+      VpcId: !Ref VPCApps
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '0'
+        ToPort: '65535'
+        CidrIp: !GetAtt VPCApps.CidrBlock
+      SecurityGroupEgress:
+      - IpProtocol: tcp
+        FromPort: '0'
+        ToPort: '65535'
+        CidrIp: !GetAtt VPCApps.CidrBlock      
 #Output section expected      
 Outputs:
-  VPC:
+  VPCDMZ:
     Description: VPC of the base network
-    Value: !Ref MyVPC1
+    Value: !Ref VPCDMZ
     Export:
-      Name: !Join ['', [!Ref "AWS::StackName", "-VPC" ]]
-  PublicSubnet1:
-    Condition: BuildMyPrivateSubnet1
+      Name: VPCDMZ
+  VPCApps:
+    Description: VPC of the base network
+    Value: !Ref VPCApps
+    Export:
+      Name: VPCApps
+  SubnetDMZ:
     Description: First Public Subnet
-    Value: !Ref MyPublicSubnet1
+    Value: !Ref SubnetDMZ
     Export:
-      Name: !Join ['', [!Ref "AWS::StackName", "-PublicSubnet" ]]
-  PrivateSubnet1:
-    Condition: BuildMyPrivateSubnet1
+      Name: SubnetDMZ
+  Data4EnergyAPP1:
     Description: First Private Subnet
-    Value: !Ref MyPrivateSubnet1
+    Value: !Ref Data4EnergyAPP1
     Export:
-      Name: !Join ['', [!Ref "AWS::StackName", "-PrivateSubnet" ]]
+      Name: Data4EnergyAPP1
