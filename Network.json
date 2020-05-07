@@ -175,12 +175,7 @@ NLBApps1
     IpAddressType: ipv4
     Name: NLBVPCApps
     Scheme: internal
-    Subnets: 
-      - Data4EnergyAPP1
-    Tags: 
-      - 
-        Key: Name
-        Value: NLBVPCApps
+    Subnets: Data4EnergyAPP1
     Type: network
 #Listeners for NLBVPCApps
 NLBListernerApps1
