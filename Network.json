@@ -168,8 +168,6 @@ Resources:
         FromPort: '0'
         ToPort: '65535'
         CidrIp: !GetAtt VPCApps.CidrBlock 
-#Creation of the instance QGISInstance
-
  #NLB in VPCAPPS
 NLBApps1
   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
