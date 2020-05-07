@@ -1,9 +1,21 @@
-
-
-
-
-
-  PrivateInstance1:
+AWSTemplateFormatVersion: 2010-09-09
+# This CloudFormation is used for Data4Business project. The AWS environnement is created in eu-west-1
+Mappings:
+ #  This is the Amazon Linux 2 AMI.  Adjust these values as needed, they can change a few times per year:
+  AmazonLinuxAMI:
+    eu-west-1:
+      AMI: ami-06ce3edf0cff21f07    # Ireland 
+Parameters:
+  NumberOfAZs:
+    Type: Number
+    AllowedValues:
+    - 1
+    - 2
+    - 3
+    Default: 1
+    Description:  How many Availability Zones do you wish to utilize?
+Resources:
+  QGISInstance:
     Type: AWS::EC2::Instance
     DependsOn: PrivateRoute1                           
     Properties:
