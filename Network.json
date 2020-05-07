@@ -107,6 +107,7 @@ Resources:
         FromPort: '443'
         ToPort: '443'
         CidrIp: 0.0.0.0/0
+#Creation of all the elements of the VPCAPPS
 # VPCAPPS
   VPCApps:
     Type: AWS::EC2::VPC
@@ -166,7 +167,51 @@ Resources:
       - IpProtocol: tcp
         FromPort: '0'
         ToPort: '65535'
-        CidrIp: !GetAtt VPCApps.CidrBlock      
+        CidrIp: !GetAtt VPCApps.CidrBlock 
+#Creation of the instance QGISInstance
+
+ #NLB in VPCAPPS
+NLBApps1
+  Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+  Properties: 
+    IpAddressType: ipv4
+    Name: NLBVPCApps
+    Scheme: internal
+    Subnets: 
+      - Data4EnergyAPP1
+    Tags: 
+      - 
+        Key: Name
+        Value: NLBVPCApps
+    Type: network
+#Listeners for NLBVPCApps
+NLBListernerApps1
+  Type: AWS::ElasticLoadBalancingV2::Listener
+  Properties:
+     DefaultActions:
+       - Type: forward
+         TargetGroupArn: !Ref TargetGroupApps1
+     LoadBalancerArn: !Ref NLBApps1
+     Port: 80
+     Protocol: TCP
+#Target Group 
+TargetGroupApps1
+  Type: AWS::ElasticLoadBalancingV2::TargetGroup
+  Properties: 
+    HealthCheckEnabled: instance 
+    HealthCheckIntervalSeconds: 30
+    HealthCheckPath: /
+    HealthCheckPort: traffic-port
+    HealthCheckProtocol: TCP
+    HealthCheckTimeoutSeconds: 6
+    HealthyThresholdCount: 3
+    Name: TargetGroupApp1
+    Port: 80
+    Protocol: TCP
+    TargetType: instance 
+    Targets: 
+      - Id: !Ref QGISInstance
+    VpcId: !Ref VPCApps
 #Output section expected      
 Outputs:
   VPCDMZ:
