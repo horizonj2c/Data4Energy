@@ -17,17 +17,21 @@ Parameters:
 Resources:
   QGISInstance:
     Type: AWS::EC2::Instance
-    DependsOn: PrivateRoute1                           
+    DependsOn: 
+    - PrivateRoute1
+    - Data4EnergyAPP1
+    - PrivateSecurityGroup1
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
       InstanceType: t2.small                          
       NetworkInterfaces:
       - DeviceIndex: '0'
-        SubnetId: !Ref MyPrivateSubnet1               
+        SubnetId: !Ref Data4EnergyAPP1              
         AssociatePublicIpAddress: false                
         GroupSet: [!Ref PrivateSecurityGroup1]             # Plug in the security group
       SourceDestCheck: true 
       Tags:
       - 
         Key: Name
-        Value: !Join ['PrivateInstance1-', [!Ref "AWS::StackName"]]
+        Value: QGISInstance
+
