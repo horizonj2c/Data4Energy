@@ -211,24 +211,24 @@ Outputs:
     Description: VPC of the base network
     Value: !Ref VPCDMZ
     Export:
-      Name: !Ref VPCDMZ
+      Name: VPCDMZ
   VPCApps:
     Description: VPC of the base network
     Value: !Ref VPCApps
     Export:
-      Name: !Ref VPCApps
+      Name: VPCApps
   SubnetDMZ:
     Description: First Public Subnet
     Value: !Ref SubnetDMZ
     Export:
-      Name: !Ref SubnetDMZ
+      Name: SubnetDMZ
   Data4EnergyAPP1:
     Description: First Private Subnet
     Value: !Ref Data4EnergyAPP1
     Export:
-      Name: !Ref Data4EnergyAPP1
+      Name: Data4EnergyAPP1
   PrivateSecurityGroup1:
     Description: SecurityGroup
     Value: !Ref PrivateSecurityGroup1
     Export:
-      Name: !Ref PrivateSecurityGroup1
+      Name: PrivateSecurityGroup1
