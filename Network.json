@@ -227,7 +227,7 @@ Outputs:
     Value: !Ref Data4EnergyAPP1
     Export:
       Name: Data4EnergyAPP1
-  PrivateSecurityGroup1
+  PrivateSecurityGroup1:
     Description: SecurityGroup
     Value: !Ref PrivateSecurityGroup1
     Export:
