@@ -18,8 +18,8 @@ Resources:
   QGISInstance:
     Type: AWS::EC2::Instance
     DependsOn: 
-    - Fn::ImportValue: Data4EnergyAPP1
-    - Fn::ImportValue: PrivateSecurityGroup1
+    - Fn::ImportValue: !Ref Data4EnergyAPP1
+    - Fn::ImportValue: !Ref PrivateSecurityGroup1
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
       InstanceType: t2.small                          
