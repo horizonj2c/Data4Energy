@@ -1,0 +1,21 @@
+
+
+
+
+
+  PrivateInstance1:
+    Type: AWS::EC2::Instance
+    DependsOn: PrivateRoute1                           
+    Properties:
+      ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
+      InstanceType: t2.small                          
+      NetworkInterfaces:
+      - DeviceIndex: '0'
+        SubnetId: !Ref MyPrivateSubnet1               
+        AssociatePublicIpAddress: false                
+        GroupSet: [!Ref PrivateSecurityGroup1]             # Plug in the security group
+      SourceDestCheck: true 
+      Tags:
+      - 
+        Key: Name
+        Value: !Join ['PrivateInstance1-', [!Ref "AWS::StackName"]]
