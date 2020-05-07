@@ -22,7 +22,7 @@ Resources:
       InstanceType: t2.small                          
       NetworkInterfaces:
       - DeviceIndex: '0'
-        SubnetId: !Ref Data4EnergyAPP1              
+        SubnetId: !ImportValue Data4EnergyAPP1              
         AssociatePublicIpAddress: false                
         GroupSet: [ !ImportValue PrivateSecurityGroup1]             # Plug in the security group
       SourceDestCheck: true 
