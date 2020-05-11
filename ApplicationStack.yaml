@@ -34,9 +34,3 @@ Resources:
       - 
         Key: Name
         Value: QGISInstance
-Outputs:
-  KEYPAIR:
-    Description: VPC of the base network
-    Value: !Ref QGISInstanceKeyPair
-    Export:
-      Name: !Join ['', [!Ref "AWS::StackName", "-keyName" ]]
