@@ -23,7 +23,6 @@ Resources:
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
       InstanceType: t2.small    
-      Availabilityzone: eu-west-1a
       KeyName: "QGISInstanceKeyPair"
       NetworkInterfaces:
       - DeviceIndex: '0'
