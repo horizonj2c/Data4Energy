@@ -22,13 +22,14 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
-      InstanceType: t2.small                          
+      InstanceType: t2.small    
+      Availabilityzone: eu-west-1a
+      KeyName: "QGISInstanceKeyPair"
       NetworkInterfaces:
       - DeviceIndex: '0'
         SubnetId: !ImportValue Data4EnergyAPP1              
         AssociatePublicIpAddress: false                
         GroupSet: [ !ImportValue PrivateSecurityGroup1]             # Plug in the security group
-        KeyName: "QGISInstanceKeyPair"
       SourceDestCheck: true 
       Tags:
       - 
