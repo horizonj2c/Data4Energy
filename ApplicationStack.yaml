@@ -4,11 +4,11 @@ Mappings:
  #  This is the Amazon Linux 2 AMI.  Adjust these values as needed, they can change a few times per year:
   AmazonLinuxAMI:
     eu-west-1:
-      AMI: ami-06ce3edf0cff21f07    # Ireland 
+      AMI: ami-07ea61f0216dae1e6    # Ireland 
 Parameters:
-  QGISInstanceKeyPair:
-    Type: "AWS::EC2::KeyPair::KeyName"
-    Default: QGISInstanceKeyPair
+#  QGISInstanceKeyPair:
+#    Type: "AWS::EC2::KeyPair::KeyName"
+#    Default: QGISInstanceKeyPair
   NumberOfAZs:
     Type: Number
     AllowedValues:
