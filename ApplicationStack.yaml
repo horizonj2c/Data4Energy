@@ -8,7 +8,7 @@ Mappings:
 Parameters:
   QGISInstanceKeyPair:
     Description: The EC2 Key Pair (QGISInstanceKeyPair) to allow SSH access to the instance
-    Type: AWS::EC2::KeyPair::QGISInstanceKeyPair
+    Type: AWS::EC2::KeyPair::KeyName
   NumberOfAZs:
     Type: Number
     AllowedValues:
