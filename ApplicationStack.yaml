@@ -28,7 +28,7 @@ Resources:
         SubnetId: !ImportValue Data4EnergyAPP1              
         AssociatePublicIpAddress: false                
         GroupSet: [ !ImportValue PrivateSecurityGroup1]             # Plug in the security group
-        KeyName: !Ref QGISInstanceKeyPair
+        KeyName: !Ref AAA
       SourceDestCheck: true 
       Tags:
       - 
