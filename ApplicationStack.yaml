@@ -6,9 +6,8 @@ Mappings:
     eu-west-1:
       AMI: ami-06ce3edf0cff21f07    # Ireland 
 Parameters:
-#  QGISInstanceKeyPair:
-#    Description: The EC2 Key Pair (QGISInstanceKeyPair) to allow SSH access to the instance
-#    Type: "AWS::EC2::KeyPair::KeyName"
+  Jenkins-Master:
+    Type: "AWS::EC2::KeyPair::KeyName"
   NumberOfAZs:
     Type: Number
     AllowedValues:
