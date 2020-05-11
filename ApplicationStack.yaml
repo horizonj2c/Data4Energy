@@ -6,9 +6,9 @@ Mappings:
     eu-west-1:
       AMI: ami-06ce3edf0cff21f07    # Ireland 
 Parameters:
-  AAA:
+  QGISInstanceKeyPair:
     Type: "AWS::EC2::KeyPair::KeyName"
-    Default: AAA
+    Default: QGISInstanceKeyPair
   NumberOfAZs:
     Type: Number
     AllowedValues:
@@ -28,7 +28,7 @@ Resources:
         SubnetId: !ImportValue Data4EnergyAPP1              
         AssociatePublicIpAddress: false                
         GroupSet: [ !ImportValue PrivateSecurityGroup1]             # Plug in the security group
-        KeyName: !Ref AAA
+        KeyName: !Ref QGISInstanceKeyPair
       SourceDestCheck: true 
       Tags:
       - 
