@@ -8,6 +8,7 @@ Mappings:
 Parameters:
   AAA:
     Type: "AWS::EC2::KeyPair::KeyName"
+    Default: AAA
   NumberOfAZs:
     Type: Number
     AllowedValues:
