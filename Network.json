@@ -169,7 +169,7 @@ Resources:
         ToPort: '65535'
         CidrIp: !GetAtt VPCApps.CidrBlock 
  #NLB in VPCAPPS
-  NLBApps1
+  NLBApps1:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties: 
       IpAddressType: ipv4
@@ -178,7 +178,7 @@ Resources:
       Subnets: Data4EnergyAPP1
       Type: network
  #Listeners for NLBVPCApps
-  NLBListernerApps1
+  NLBListernerApps1:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
       DefaultActions:
@@ -188,7 +188,7 @@ Resources:
       Port: 80
       Protocol: TCP
   #Target Group 
-  TargetGroupApps1
+  TargetGroupApps1:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties: 
       HealthCheckEnabled: instance 
