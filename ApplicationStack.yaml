@@ -72,6 +72,11 @@ Resources:
       AcceptanceRequired: true
       NetworkLoadBalancerArns: 
         - !Ref NLBApps1
+   EndpointNLB:
+    Type: 'AWS::EC2::VPCEndpoint'
+    Properties:
+      ServiceName: !Ref EndPointService
+      VpcId: !ImportValue VPCDMZ
 #Output section expected      
 Outputs:
   QGISInstance:
