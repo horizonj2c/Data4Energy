@@ -26,7 +26,7 @@ Resources:
       KeyName: "QGISInstanceKeyPair"
       NetworkInterfaces:
       - DeviceIndex: '0'
-        SubnetId: !ImportValue Data4EnergyAPP1              
+        SubnetId: !ImportValue Data4EnergyAPP1      
         AssociatePublicIpAddress: false                
         GroupSet: [ !ImportValue PrivateSecurityGroup1]             # Plug in the security group
       SourceDestCheck: true 
@@ -34,3 +34,10 @@ Resources:
       - 
         Key: Name
         Value: QGISInstance
+#Output section expected      
+Outputs:
+  QGISInstance:
+    Description: Instance for QGIS
+    Value: !Ref QGISInstance
+    Export:
+      Name: QGISInstance
