@@ -203,7 +203,7 @@ Resources:
       Protocol: TCP
       TargetType: instance 
       Targets: 
-        - Id: !Ref QGISInstance
+        - Id: !ImportValue QGISInstance
       VpcId: !Ref VPCApps
 #Output section expected      
 Outputs:
