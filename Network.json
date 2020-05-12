@@ -35,7 +35,17 @@ Resources:
       Tags:
         - 
           Key: Name
-          Value: SubnetDMZ         
+          Value: SubnetDMZ   
+  SubnetDMZ2:
+    Type: "AWS::EC2::Subnet"
+    Properties:
+      VpcId: !Ref VPCDMZ
+      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
+      CidrBlock: 10.0.2.0/24
+      Tags:
+        - 
+          Key: Name
+          Value: SubnetDMZ   
  # Internet access for the VPC     
   InternetGateway:
     Type: AWS::EC2::InternetGateway
@@ -82,6 +92,11 @@ Resources:
     Properties:
       SubnetId: !Ref SubnetDMZ
       RouteTableId: !Ref PublicRouteTable
+  PublicSubnetRouteTableAssociation2:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref SubnetDMZ2
+      RouteTableId: !Ref PublicRouteTable  
   # Security group for SubnetDMZ.  Ingress from internet IPs but TCP port 443 only:
   PublicSecurityGroupSubnetDMZ:
     Type: AWS::EC2::SecurityGroup
