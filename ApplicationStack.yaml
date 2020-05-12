@@ -94,7 +94,7 @@ Resources:
       IpAddressType: ipv4
       Name: ALBVPCApps
       Scheme: internet-facing
-      Type: Application 
+      Type: application 
 #Output section expected      
 Outputs:
   QGISInstance:
