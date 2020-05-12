@@ -45,7 +45,7 @@ Resources:
       Tags:
         - 
           Key: Name
-          Value: SubnetDMZ   
+          Value: SubnetDMZ2   
  # Internet access for the VPC     
   InternetGateway:
     Type: AWS::EC2::InternetGateway
