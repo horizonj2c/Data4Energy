@@ -87,6 +87,14 @@ Resources:
       Port: 80
       Protocol: TCP
       TargetType: ip
+    #ALB in VPCAPPS
+  ALBApps1:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties: 
+      IpAddressType: ipv4
+      Name: ALBVPCApps
+      Scheme: internet-facing
+      Type: Application 
 #Output section expected      
 Outputs:
   QGISInstance:
