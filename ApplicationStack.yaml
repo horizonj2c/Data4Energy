@@ -69,7 +69,7 @@ Resources:
   EndPointService:
     Type: AWS::EC2::VPCEndpointService
     Properties: 
-      AcceptanceRequired: '0'
+      AcceptanceRequired: 0
       NetworkLoadBalancerArns: 
         - !Ref NLBApps1
 #Output section expected      
