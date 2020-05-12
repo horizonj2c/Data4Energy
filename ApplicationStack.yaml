@@ -53,7 +53,7 @@ Resources:
       IpAddressType: ipv4
       Name: NLBVPCApps
       Scheme: internal
-      Subnets: Data4EnergyAPP1
+      Subnets: !Ref Data4EnergyAPP1
       Type: network
  #Listeners for NLBVPCApps
   NLBListernerApps1:
