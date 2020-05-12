@@ -87,8 +87,6 @@ Resources:
       Port: 80
       Protocol: TCP
       TargetType: ip
-      Targets: 
-        - "10.0.1.172"
 #Output section expected      
 Outputs:
   QGISInstance:
