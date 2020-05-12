@@ -34,6 +34,18 @@ Resources:
       - 
         Key: Name
         Value: QGISInstance
+#Target Group 
+  TargetGroupApps1:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    DependsOn: QGISInstance
+    Properties: 
+      Name: TargetGroupApp1
+      VpcId: !ImportValue VPCApps  
+      Port: 80
+      Protocol: TCP
+      TargetType: instance 
+      Targets: 
+        - Id: !Ref QGISInstance
    #NLB in VPCAPPS
   NLBApps1:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -53,24 +65,6 @@ Resources:
       LoadBalancerArn: !Ref NLBApps1
       Port: 80
       Protocol: TCP
-  #Target Group 
-  TargetGroupApps1:
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    Properties: 
-      HealthCheckEnabled: instance 
-      HealthCheckIntervalSeconds: 30
-      HealthCheckPath: /
-      HealthCheckPort: traffic-port
-      HealthCheckProtocol: TCP
-      HealthCheckTimeoutSeconds: 6
-      HealthyThresholdCount: 3
-      Name: TargetGroupApp1
-      Port: 80
-      Protocol: TCP
-      TargetType: instance 
-      Targets: 
-        - Id: !Ref QGISInstance
-      VpcId: !ImportValue VPCApps      
 #Output section expected      
 Outputs:
   QGISInstance:
