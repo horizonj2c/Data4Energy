@@ -170,6 +170,11 @@ Resources:
         CidrIp: !GetAtt VPCApps.CidrBlock 
 #Output section expected      
 Outputs:
+  PublicRoute:
+    Description: PublicRoute of the base network
+    Value: !Ref PublicRoute
+    Export:
+      Name: PublicRoute
   VPCDMZ:
     Description: VPC of the base network
     Value: !Ref VPCDMZ
