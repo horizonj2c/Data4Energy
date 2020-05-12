@@ -72,7 +72,7 @@ Resources:
       AcceptanceRequired: true
       NetworkLoadBalancerArns: 
         - !Ref NLBApps1
-   EndpointNLB:
+  EndpointNLB:
     Type: 'AWS::EC2::VPCEndpoint'
     Properties:
       ServiceName: "com.amazonaws.vpce.eu-west-1.vpce-svc-08e3804a54d2dad36"
