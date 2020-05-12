@@ -79,6 +79,16 @@ Resources:
       ServiceName: "com.amazonaws.vpce.eu-west-1.vpce-svc-0824341fe793e99b5"
       VpcEndpointType : Interface
       VpcId: !ImportValue VPCDMZ
+  TargetGroupApps2:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties: 
+      Name: TargetGroupApp2
+      VpcId: !ImportValue VPCDMZ
+      Port: 80
+      Protocol: TCP
+      TargetType: ip
+      Targets: 
+        - "10.0.1.172"
 #Output section expected      
 Outputs:
   QGISInstance:
