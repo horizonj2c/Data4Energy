@@ -75,7 +75,7 @@ Resources:
    EndpointNLB:
     Type: 'AWS::EC2::VPCEndpoint'
     Properties:
-      ServiceName: !Ref EndPointService
+      ServiceName: "com.amazonaws.vpce.eu-west-1.vpce-svc-08e3804a54d2dad36"
       VpcId: !ImportValue VPCDMZ
 #Output section expected      
 Outputs:
