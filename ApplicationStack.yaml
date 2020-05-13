@@ -72,25 +72,25 @@ Resources:
       AcceptanceRequired: false
       NetworkLoadBalancerArns: 
         - !Ref NLBApps1
-  EndpointNLB:
-    Type: 'AWS::EC2::VPCEndpoint'
-    DependsOn: EndPointService
-    Properties:
-      ServiceName: "com.amazonaws.vpce.eu-west-1.vpce-svc-030648eef65d80743"
-      VpcEndpointType : Interface
-      VpcId: !ImportValue VPCDMZ
-      SubnetIds: 
-        - "subnet-06799e274a96fd70a"
-  TargetGroupApps2:
-    Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    Properties: 
-      Name: TargetGroupApp2
-      VpcId: !ImportValue VPCDMZ
-      Port: 80
-      Protocol: HTTP
-      TargetType: ip
-      Targets:
-        - Id: "10.0.1.202"
+#  EndpointNLB:
+#    Type: 'AWS::EC2::VPCEndpoint'
+#    DependsOn: EndPointService
+#    Properties:
+#      ServiceName: "com.amazonaws.vpce.eu-west-1.vpce-svc-030648eef65d80743"
+#      VpcEndpointType : Interface
+#      VpcId: !ImportValue VPCDMZ
+#      SubnetIds: 
+#        - "subnet-06799e274a96fd70a"
+#  TargetGroupApps2:
+#    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+#    Properties: 
+#      Name: TargetGroupApp2
+#      VpcId: !ImportValue VPCDMZ
+#     Port: 80
+#      Protocol: HTTP
+#      TargetType: ip
+#      Targets:
+#        - Id: "10.0.1.202"
     #ALB in VPCAPPS
   ALBApps1:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
@@ -102,15 +102,15 @@ Resources:
         - "subnet-06799e274a96fd70a"
         - "subnet-0d41cd8e4e9291ee6"
       Type: application 
-  ALBListernerApps1:
-    Type: AWS::ElasticLoadBalancingV2::Listener
-    Properties:
-      DefaultActions:
-       - Type: forward
-         TargetGroupArn: !Ref TargetGroupApps2
-      LoadBalancerArn: !Ref ALBApps1
-      Port: 80
-      Protocol: HTTP   
+ # ALBListernerApps1:
+ #   Type: AWS::ElasticLoadBalancingV2::Listener
+ #   Properties:
+ #     DefaultActions:
+ #      - Type: forward
+ #        TargetGroupArn: !Ref TargetGroupApps2
+ #     LoadBalancerArn: !Ref ALBApps1
+ #     Port: 80
+ #     Protocol: HTTP   
 #Output section expected      
 Outputs:
   QGISInstance:
