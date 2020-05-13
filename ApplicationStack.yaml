@@ -89,6 +89,8 @@ Resources:
       Port: 80
       Protocol: TCP
       TargetType: ip
+      Targets:
+        -Id: "10.0.1.202"
     #ALB in VPCAPPS
   ALBApps1:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
