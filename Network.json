@@ -30,7 +30,7 @@ Resources:
     Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPCDMZ
-      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
+      AvailabilityZone: "eu-west-1a"
       CidrBlock: 10.0.1.0/24
       Tags:
         - 
@@ -40,7 +40,7 @@ Resources:
     Type: "AWS::EC2::Subnet"
     Properties:
       VpcId: !Ref VPCDMZ
-      AvailabilityZone: !Select [ 0, !GetAZs ]    # Get the first AZ in the list
+      AvailabilityZone: "eu-west-1b"
       CidrBlock: 10.0.2.0/24
       Tags:
         - 
