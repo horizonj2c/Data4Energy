@@ -102,6 +102,15 @@ Resources:
         - "subnet-06799e274a96fd70a"
         - "subnet-0d41cd8e4e9291ee6"
       Type: application 
+  ALBListernerApps1:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+       - Type: forward
+         TargetGroupArn: !Ref TargetGroupApps2
+      LoadBalancerArn: !Ref ALBApps1
+      Port: 80
+      Protocol: HTTP   
 #Output section expected      
 Outputs:
   QGISInstance:
