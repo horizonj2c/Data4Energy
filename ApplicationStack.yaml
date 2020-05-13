@@ -65,7 +65,7 @@ Resources:
          TargetGroupArn: !Ref TargetGroupApps1
       LoadBalancerArn: !Ref NLBApps1
       Port: 80
-      Protocol: HTTP
+      Protocol: TCP
   EndPointService:
     Type: AWS::EC2::VPCEndpointService
     Properties: 
