@@ -95,8 +95,8 @@ Resources:
       Name: ALBVPCApps
       Scheme: internet-facing
       Subnets: 
-        - "subnet-066ded753bf67e856"
-        - "subnet-0ba804f9201a89906"
+        - "subnet-06799e274a96fd70a"
+        - "subnet-0d41cd8e4e9291ee6"
       Type: application 
 #Output section expected      
 Outputs:
