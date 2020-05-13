@@ -88,16 +88,16 @@ Resources:
       Protocol: TCP
       TargetType: ip
     #ALB in VPCAPPS
- # ALBApps1:
- #   Type: AWS::ElasticLoadBalancingV2::LoadBalancer
- #   Properties: 
- #     IpAddressType: ipv4
- #     Name: ALBVPCApps
- #     Scheme: internet-facing
- #     Subnets: 
- #       - "subnet-06799e274a96fd70a"
- #       - "subnet-0d41cd8e4e9291ee6"
- #     Type: application 
+  ALBApps1:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties: 
+      IpAddressType: ipv4
+      Name: ALBVPCApps
+      Scheme: internet-facing
+      Subnets: 
+        - "subnet-06799e274a96fd70a"
+        - "subnet-0d41cd8e4e9291ee6"
+      Type: application 
 #Output section expected      
 Outputs:
   QGISInstance:
