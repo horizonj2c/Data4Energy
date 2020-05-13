@@ -72,13 +72,13 @@ Resources:
       AcceptanceRequired: false
       NetworkLoadBalancerArns: 
         - !Ref NLBApps1
- # EndpointNLB:
- #   Type: 'AWS::EC2::VPCEndpoint'
- #   DependsOn: EndPointService
- #   Properties:
- #     ServiceName: "com.amazonaws.vpce.eu-west-1.vpce-svc-0824341fe793e99b5"
- #     VpcEndpointType : Interface
- #     VpcId: !ImportValue VPCDMZ
+  EndpointNLB:
+    Type: 'AWS::EC2::VPCEndpoint'
+    DependsOn: EndPointService
+    Properties:
+      ServiceName: "com.amazonaws.vpce.eu-west-1.vpce-svc-030648eef65d80743"
+      VpcEndpointType : Interface
+      VpcId: !ImportValue VPCDMZ
   TargetGroupApps2:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
     Properties: 
