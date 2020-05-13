@@ -42,7 +42,7 @@ Resources:
       Name: TargetGroupApp1
       VpcId: !ImportValue VPCApps  
       Port: 80
-      Protocol: TCP
+      Protocol: HTTP
       TargetType: instance 
       Targets: 
         - Id: !Ref QGISInstance
@@ -65,7 +65,7 @@ Resources:
          TargetGroupArn: !Ref TargetGroupApps1
       LoadBalancerArn: !Ref NLBApps1
       Port: 80
-      Protocol: TCP
+      Protocol: HTTP
   EndPointService:
     Type: AWS::EC2::VPCEndpointService
     Properties: 
@@ -87,7 +87,7 @@ Resources:
       Name: TargetGroupApp2
       VpcId: !ImportValue VPCDMZ
       Port: 80
-      Protocol: TCP
+      Protocol: HTTP
       TargetType: ip
       Targets:
         - Id: "10.0.1.202"
