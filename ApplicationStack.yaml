@@ -42,7 +42,7 @@ Resources:
       Name: TargetGroupApp1
       VpcId: !ImportValue VPCApps  
       Port: 80
-      Protocol: HTTP
+      Protocol: TCP
       TargetType: instance 
       Targets: 
         - Id: !Ref QGISInstance
