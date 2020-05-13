@@ -86,7 +86,7 @@ Resources:
     Properties: 
       Name: TargetGroupApp2
       VpcId: !ImportValue VPCDMZ
-     Port: 80
+      Port: 80
       Protocol: HTTP
       TargetType: ip
       Targets:
