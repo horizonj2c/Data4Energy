@@ -54,7 +54,7 @@ Resources:
       Name: NLBVPCApps
       Scheme: internal
       Subnets: 
-        - "subnet-066ded753bf67e856"
+        - "subnet-01084c17f7aee2a60"
       Type: network
  #Listeners for NLBVPCApps
   NLBListernerApps1:
