@@ -198,7 +198,7 @@ Resources:
       NetworkInterfaces:
       - DeviceIndex: '0'
         SubnetId: !Ref SubnetDMZ      
-        AssociatePublicIpAddress: false                
+        AssociatePublicIpAddress: true                
         GroupSet: [ !Ref PublicSecurityGroupSubnetDMZ]             # Plug in the security group
       SourceDestCheck: true 
       Tags:
