@@ -190,6 +190,22 @@ Resources:
                Ref: VPCDMZ
              PeerVpcId:
                Ref: VPCApps
+ BastionDMZ:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
+      InstanceType: t2.small    
+      KeyName: "BastionDMZ"
+      NetworkInterfaces:
+      - DeviceIndex: '0'
+        SubnetId: !Ref SubnetDMZ      
+        AssociatePublicIpAddress: false                
+        GroupSet: [ !Ref PublicSecurityGroupSubnetDMZ]             # Plug in the security group
+      SourceDestCheck: true 
+      Tags:
+      - 
+        Key: Name
+        Value: BastionDMZ
 #Output section expected      
 Outputs:
   PublicRoute:
