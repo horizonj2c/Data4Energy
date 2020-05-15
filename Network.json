@@ -195,7 +195,7 @@ Resources:
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
       InstanceType: t2.small    
-      KeyName: "BastionDMZ"
+      KeyName: "AAA"
       NetworkInterfaces:
       - DeviceIndex: '0'
         SubnetId: !Ref SubnetDMZ      
