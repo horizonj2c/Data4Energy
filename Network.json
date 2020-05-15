@@ -159,8 +159,7 @@ Resources:
       RouteTableId: !Ref PrivateRouteTable
       DestinationCidrBlock: 0.0.0.0/0
       # Route traffic through the NAT Gateway:
-      VpcPeeringConnectionId:: !Ref myVPCPeeringConnection
-  # Attach the private subnets to private route tables: 
+      VpcPeeringConnectionId: !Ref myVPCPeeringConnection
   # Private route table routing to NAT Gateway
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
