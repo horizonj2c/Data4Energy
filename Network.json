@@ -153,15 +153,15 @@ Resources:
         - 
           Key: Name
           Value: PrivateRoute
-  # Private route table routing to NAT Gateway
-#  PrivateRoute1:            
-#    Type: AWS::EC2::Route
-#    Properties:
-#      RouteTableId: !Ref PrivateRouteTable
-#      DestinationCidrBlock: 0.0.0.0/0
-#      # Route traffic through the NAT Gateway:
-#      NatGatewayId: !Ref NATGateway
+  PrivateRoute1:            
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      # Route traffic through the NAT Gateway:
+      VpcPeeringConnectionId:: !Ref myVPCPeeringConnection
   # Attach the private subnets to private route tables: 
+  # Private route table routing to NAT Gateway
   PrivateSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
