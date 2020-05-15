@@ -72,6 +72,13 @@ Resources:
       RouteTableId: !Ref PublicRouteTable
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway  
+  PublicRoute2:            
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 10.1.0.0/16
+      # Route traffic through the NAT Gateway:
+      VpcPeeringConnectionId: !Ref myVPCPeeringConnection
   # Attach SubnetDMZ to PublicRouteTable,  
   PublicSubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
