@@ -183,6 +183,13 @@ Resources:
         FromPort: '0'
         ToPort: '65535'
         CidrIp: !GetAtt VPCApps.CidrBlock 
+  myVPCPeeringConnection:
+          Type: AWS::EC2::VPCPeeringConnection
+          Properties:
+             VpcId:
+               Ref: VPCDMZ
+             PeerVpcId:
+               Ref: VPCApps
 #Output section expected      
 Outputs:
   PublicRoute:
