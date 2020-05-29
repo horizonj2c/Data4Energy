@@ -37,7 +37,7 @@ Resources:
 #Target Group 
   TargetGroupApps1:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
-    DependsOn: QGISInstance
+    DependsOn: QGISInstance1
     Properties: 
       Name: TargetGroupApp1
       VpcId: !ImportValue VPCApps  
@@ -45,7 +45,7 @@ Resources:
       Protocol: TCP
       TargetType: instance 
       Targets: 
-        - Id: !Ref QGISInstance
+        - Id: !Ref QGISInstance1
    #NLB in VPCAPPS
   NLBApps1:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
