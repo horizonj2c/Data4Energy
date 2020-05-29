@@ -33,7 +33,7 @@ Resources:
       Tags:
       - 
         Key: Name
-        Value: QGISInstance
+        Value: QGISInstance1
 #Target Group 
   TargetGroupApps1:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
@@ -113,8 +113,8 @@ Resources:
       Protocol: HTTP   
 #Output section expected      
 Outputs:
-  QGISInstance:
+  QGISInstance1:
     Description: Instance for QGIS
-    Value: !Ref QGISInstance
+    Value: !Ref QGISInstance1
     Export:
-      Name: QGISInstance
+      Name: QGISInstance1
