@@ -18,7 +18,7 @@ Parameters:
     Default: 1
     Description:  How many Availability Zones do you wish to utilize?
 Resources:
-  QGISInstance:
+  QGISInstance1:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !FindInMap [ AmazonLinuxAMI, !Ref "AWS::Region", AMI]  # lookup from AMI map
